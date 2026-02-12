@@ -1,84 +1,94 @@
 .mood-selector {
-    padding: var(--spacing-lg);
-}
-
-.mood-selector h2 {
-    font-size: 1.25rem;
-    margin-bottom: var(--spacing-md);
-    color: var(--text-primary);
-    font-weight: 600;
+    padding: var(--space-lg);
     display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
+    flex-direction: column;
+    gap: var(--space-lg);
 }
 
-.mood-selector h2::before {
-    content: '';
-    display: block;
-    width: 4px;
-    height: 24px;
-    background: var(--primary-gradient);
-    border-radius: 2px;
-    box-shadow: var(--shadow-glow);
+.mood-header h2 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
 }
 
-.mood-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: var(--spacing-md);
-}
-
-.mood-button {
-    padding: var(--spacing-md) var(--spacing-lg);
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border-color);
-    border-radius: 999px;
-    /* Pill shape */
+.mood-header .subtitle {
     color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.mood-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--space-md);
+    padding-bottom: var(--space-md);
+    /* space for shadows */
+}
+
+/* Card Style */
+.mood-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-md);
+    gap: var(--space-sm);
+
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+
+    transition: all var(--duration-fast) var(--ease-spring);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.mood-card:hover {
+    background: rgba(30, 41, 59, 0.7);
+    transform: translateY(-4px);
+    border-color: var(--primary-light);
+    box-shadow: var(--shadow-md);
+}
+
+.mood-card.active {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.mood-icon {
+    font-size: 2rem;
+    transition: transform var(--duration-fast);
+}
+
+.mood-card:hover .mood-icon {
+    transform: scale(1.1);
+}
+
+.mood-content h3 {
     font-size: 0.95rem;
     font-weight: 600;
-    cursor: pointer;
-    transition: all var(--transition-base);
-    position: relative;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 0.02em;
-    overflow: hidden;
+    color: var(--text-primary);
+    margin-bottom: 2px;
 }
 
-.mood-button:hover {
-    background: rgba(6, 182, 212, 0.1);
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    box-shadow: var(--shadow-glow);
-    transform: translateY(-2px);
+.mood-content p {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.2;
 }
 
-.mood-button:active {
-    transform: translateY(0);
-}
-
-.mood-button.active {
-    background: var(--primary-gradient);
-    border-color: transparent;
+.mood-card.active .mood-content h3,
+.mood-card.active .mood-content p {
     color: white;
-    box-shadow: var(--shadow-glow);
 }
 
-.mood-button.active::after {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: 999px;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), transparent);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-}
-
-@media (max-width: 600px) {
-    .mood-buttons {
+/* Responsive adjustment */
+@media (max-width: 480px) {
+    .mood-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }

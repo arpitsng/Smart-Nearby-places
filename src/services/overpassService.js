@@ -1,5 +1,6 @@
 export async function fetchNearbyPlaces(lat, lng, types) {
-  const radius = 5000;
+  const radius = 5000; //cm . ie 5km
+
 
   const query = `
     [out:json][timeout:25];

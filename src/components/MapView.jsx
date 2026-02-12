@@ -8,8 +8,8 @@ function MapView({ location, places }) {
       style={{ height: "100%", width: "100%" }}
     >
       <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution="© OpenStreetMap contributors"
+        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
       />
 
       <Marker position={[location.lat, location.lng]}>
@@ -21,12 +21,12 @@ function MapView({ location, places }) {
         .map((place) => (
           <Marker key={place.id} position={[place.lat, place.lon]}>
             <Popup>
-        <strong>{place.tags?.name || "Unnamed place"}</strong>
-        <br />
-        {place.tags?.amenity}
-      </Popup>
-    </Marker>
-  ))}
+              <strong>{place.tags?.name || "Unnamed place"}</strong>
+              <br />
+              {place.tags?.amenity}
+            </Popup>
+          </Marker>
+        ))}
 
     </MapContainer>
   );
